@@ -456,6 +456,12 @@ section {
   background: var(--accent-dark);
   color: #fff;
 }
+.btn-link.disabled {
+  background: #ccc;
+  color: #666;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 /* SEÇÃO 4 — CONTATO (#contato) */
 #contato { background-color: var(--bg-card); }

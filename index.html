@@ -3,655 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfólio de Aquilas Oliveira - Desenvolvedor Web, Analista de Dados e Estudante de Análise e Desenvolvimento de Sistemas. Conheça meus projetos e habilidades." />
+  <meta name="keywords" content="desenvolvedor web, programação, HTML, CSS, JavaScript, portfólio, tecnologia" />
+  <meta name="author" content="Aquilas Oliveira" />
+  <meta name="theme-color" content="#c8522a" />
   <title>Aquilas Oliveira | Portfólio</title>
 
-  <!-- Fontes do Google Fonts (CDN externo permitido) -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23c8522a'>A</text></svg>" />
+
+  <!-- Preload das fontes do Google Fonts para melhor performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-
-  <style>
-    /*  TEMA (Claro e Escuro)
-        Variáveis CSS para cores e estilos, facilitando a alternância entre temas
-    */
-    :root {
-      --bg:           #f5f3ee;
-      --bg-card:      #ffffff;
-      --text:         #1a1a1a;
-      --text-muted:   #6b6b6b;
-      --accent:       #c8522a;
-      --accent-dark:  #a03d1a;
-      --border:       #e0dbd2;
-      --nav-bg:       rgba(245, 243, 238, 0.92);
-      --shadow:       0 4px 24px rgba(0,0,0,0.08);
-      --tag-bg:       #efe9df;
-    }
-
-    /* Tema escuro*/
-    body.dark {
-      --bg:           #111210;
-      --bg-card:      #1c1c1a;
-      --text:         #ede8e0;
-      --text-muted:   #9a9489;
-      --accent:       #e06a3a;
-      --accent-dark:  #c8522a;
-      --border:       #2e2d2a;
-      --nav-bg:       rgba(17, 18, 16, 0.92);
-      --shadow:       0 4px 24px rgba(0,0,0,0.4);
-      --tag-bg:       #27261f;
-    }
-
-    /* Reset básico e estilos globais */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth; /*Rolagem suave*/
-      font-size: 16px;
-    }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    a:hover { color: var(--accent-dark); }
-
-    img { max-width: 100%; display: block; }
-
-    /* BARRA DE NAVEGAÇÃO - Visível em todas as seções - requisito obrigatório */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.3s;
-    }
-
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    /* Logo / Nome no nav */
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--text);
-      letter-spacing: -0.5px;
-    }
-    .nav-logo span { color: var(--accent); }
-
-    /* Links do menu */
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 0.25rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.4rem 0.85rem;
-      border-radius: 999px;
-      transition: background 0.2s, color 0.2s;
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      background: var(--tag-bg);
-      color: var(--accent);
-    }
-
-    /* Botão de alternar tema */
-    #theme-toggle {
-      background: var(--tag-bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      cursor: pointer;
-      padding: 0.35rem 0.75rem;
-      font-size: 1rem;
-      color: var(--text);
-      transition: background 0.2s;
-      line-height: 1;
-    }
-    #theme-toggle:hover { background: var(--border); }
-
-    /* Botão mobile */
-    #hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.4rem;
-    }
-    #hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      border-radius: 2px;
-      transition: transform 0.3s, opacity 0.3s;
-    }
-
-    /* LAYOUT GERAL */
-    section {
-      min-height: 100vh;
-      padding: 7rem 1.5rem 5rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    /* Título de seção */
-    .section-label {
-      font-family: 'Syne', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -1.5px;
-      color: var(--text);
-      margin-bottom: 1.5rem;
-    }
-
-    .section-divider {
-      width: 48px;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 2px;
-      margin-bottom: 3rem;
-    }
-
-    /* SEÇÃO 1 — SOBRE MIM (#sobre) */
-    #sobre { background-color: var(--bg); }
-
-    .sobre-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    /* Avatar */
-    .sobre-avatar {
-      position: relative;
-    }
-
-    .avatar-frame {
-      width: 100%;
-      max-width: 380px;
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, var(--accent) 0%, #f0a070 100%);
-      border-radius: 40% 60% 55% 45% / 45% 50% 50% 55%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Syne', sans-serif;
-      font-size: 6rem;
-      color: #fff;
-      font-weight: 800;
-      box-shadow: var(--shadow);
-      animation: morph 8s ease-in-out infinite;
-    }
-
-    /* Animação do avatar */
-    @keyframes morph {
-      0%, 100% { border-radius: 40% 60% 55% 45% / 45% 50% 50% 55%; }
-      33%       { border-radius: 55% 45% 40% 60% / 60% 45% 55% 40%; }
-      66%       { border-radius: 45% 55% 60% 40% / 50% 60% 40% 50%; }
-    }
-
-    .hero-name {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 6vw, 4rem);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.05;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-name span { color: var(--accent); }
-
-    .hero-tagline {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      margin-bottom: 1.75rem;
-      font-weight: 300;
-    }
-
-    .hero-bio {
-      font-size: 1rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      line-height: 1.8;
-    }
-
-    /* Tags de hobbies */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .tag {
-      background: var(--tag-bg);
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 0.35rem 1rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* SEÇÃO 2 — FORMAÇÃO (#formacao) */
-    #formacao { background-color: var(--bg-card); }
-
-    /* Grid de cards */
-    .formacao-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Card de formação */
-    .card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-    }
-
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .card-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 0.25rem;
-    }
-
-    .card-sub {
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 0.75rem;
-    }
-
-    .card-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* Barra de habilidades/idiomas */
-    .skill-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
-
-    .skill-bar-bg {
-      width: 100%;
-      height: 6px;
-      background: var(--border);
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 1rem;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 999px;
-      width: 0;              /* Animado pelo JS ao entrar na viewport */
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* SEÇÃO 3 — PORTFÓLIO (#portfolio) */
-    #portfolio { background-color: var(--bg); }
-
-    /* Grade de projetos */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Card de projeto */
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s;
-    }
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 40px rgba(200, 82, 42, 0.15);
-    }
-
-    /* Thumbnail colorida */
-    .project-thumb {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-
-    .project-body { padding: 1.5rem; }
-
-    .project-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-      line-height: 1.6;
-    }
-
-    /* Botão de link do projeto */
-    .btn-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.45rem 1.1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: background 0.2s;
-    }
-    .btn-link:hover {
-      background: var(--accent-dark);
-      color: #fff;
-    }
-
-    /* SEÇÃO 4 — CONTATO (#contato) */
-    #contato { background-color: var(--bg-card); }
-
-    .contato-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 5rem;
-      align-items: start;
-    }
-
-    .contato-info p {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      line-height: 1.8;
-    }
-
-    /* Links de contato (email, github, etc.) */
-    .contato-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .contato-link-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      transition: color 0.2s;
-    }
-    .contato-link-item:hover { color: var(--accent); }
-
-    .contato-link-item .icon {
-      width: 38px;
-      height: 38px;
-      background: var(--tag-bg);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    /* Formulário de contato */
-    .form-group {
-      margin-bottom: 1.25rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.85rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      color: var(--text);
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(200, 82, 42, 0.15);
-    }
-
-    /* Campo com erro de validação */
-    .form-group input.error,
-    .form-group textarea.error {
-      border-color: #e74c3c;
-    }
-
-    .form-group textarea { resize: vertical; min-height: 130px; }
-
-    /* Mensagem de erro inline */
-    .error-msg {
-      display: none;
-      font-size: 0.8rem;
-      color: #e74c3c;
-      margin-top: 0.35rem;
-    }
-    .error-msg.show { display: block; }
-
-    /* Botão de envio */
-    .btn-submit {
-      width: 100%;
-      padding: 1rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Syne', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      letter-spacing: 0.5px;
-    }
-    .btn-submit:hover { background: var(--accent-dark); }
-    .btn-submit:active { transform: scale(0.98); }
-
-    /* Modal de confirmação de envio */
-    #modal-overlay {
-      display: none;              /* Exibido após envio bem-sucedido */
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-    }
-    #modal-overlay.show { display: flex; }
-
-    .modal-box {
-      background: var(--bg-card);
-      border-radius: 20px;
-      padding: 3rem 2.5rem;
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-      animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-
-    .modal-icon { font-size: 3rem; margin-bottom: 1rem; }
-
-    .modal-title {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-    }
-
-    .modal-text {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 1.75rem;
-    }
-
-    .modal-close {
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      padding: 0.6rem 2rem;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.95rem;
-      transition: background 0.2s;
-    }
-    .modal-close:hover { background: var(--accent-dark); }
-
-    /* RODAPÉ */
-    footer {
-      text-align: center;
-      padding: 2rem 1.5rem;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      border-top: 1px solid var(--border);
-    }
-
-    /* RESPONSIVIDADE (Mobile) */
-    @media (max-width: 768px) {
-
-      /* Menu hamburguer */
-      #hamburger { display: flex; }
-
-      .nav-links {
-        display: none;           
-        position: absolute;
-        top: 64px;
-        left: 0;
-        width: 100%;
-        background: var(--nav-bg);
-        backdrop-filter: blur(12px);
-        flex-direction: column;
-        padding: 1rem 1.5rem 1.5rem;
-        border-bottom: 1px solid var(--border);
-        gap: 0.25rem;
-      }
-
-      /* Menu aberto pelo JS */
-      .nav-links.open { display: flex; }
-
-      .nav-links a {
-        display: block;
-        padding: 0.65rem 1rem;
-        border-radius: 8px;
-      }
-
-      /* Layout em coluna no mobile */
-      .sobre-grid,
-      .contato-grid {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      /* Avatar menor no mobile */
-      .avatar-frame { max-width: 220px; font-size: 4rem; }
-
-      section { padding: 6rem 1.25rem 4rem; min-height: auto; }
-    }
-
-    /*  UTILITÁRIOS */
-    .text-accent { color: var(--accent); }
-  </style>
+  
+  <!-- Estilos do Portfólio -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+
+  <!-- Mensagem para usuários sem JavaScript -->
+  <noscript>
+    <div style="background:#fff3cd; padding:1.5rem; text-align:center; font-family:sans-serif; color:#856404;">
+      ⚠️ Este site requer JavaScript para funcionar corretamente. Por favor, habilite JavaScript no seu navegador.
+    </div>
+  </noscript>
 
   <!-- NAVBAR — Menu fixo com links âncora
        Requisito: visível em todas as seções -->
@@ -672,6 +50,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#sobre"    class="nav-link active">Sobre mim</a></li>
         <li><a href="#formacao" class="nav-link">Formação</a></li>
+        <li><a href="#tecnologias" class="nav-link">Tecnologias</a></li>
         <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
         <li><a href="#contato"  class="nav-link">Contato</a></li>
         <!-- Alternância de tema -->
@@ -693,7 +72,7 @@
 
         <!-- Avatar / foto de perfil -->
         <div class="sobre-avatar">
-          <div class="avatar-frame" aria-hidden="true">AO</div>
+          <img src="Imagens/aspirantado.jpg" alt="Foto de Aquilas Oliveira" class="avatar-frame" loading="lazy" />
         </div>
 
         <!-- Conteúdo textual -->
@@ -714,13 +93,13 @@
 
           <!-- Tags de hobbies e interesses -->
           <div class="tags">
-            <span class="tag"> Programação</span>
-            <span class="tag"> Estudos</span>
-            <span class="tag"> Games</span>
-            <span class="tag"> Música</span>
-            <span class="tag"> Tecnologia</span>
-            <span class="tag"> Café</span>
-            <span class="tag"> Leitura</span>
+            <span class="tag">💻 Programação</span>
+            <span class="tag">📚 Estudos</span>
+            <span class="tag">🎮 Games</span>
+            <span class="tag">🎵 Música</span>
+            <span class="tag">⚡ Tecnologia</span>
+            <span class="tag">☕ Café</span>
+            <span class="tag">📖 Leitura</span>
           </div>
         </div>
 
@@ -790,7 +169,7 @@
           <span>Intermediário / B2</span>
         </div>
         <div class="skill-bar-bg">
-          <div class="skill-bar-fill" data-width="45"></div>
+          <div class="skill-bar-fill" data-width="66"></div>
         </div>
 
         <div class="skill-bar-label">
@@ -806,7 +185,45 @@
     </div>
   </section>
 
-  <!-- SEÇÃO 3 — PORTFÓLIO
+  <!-- SEÇÃO 2.5 — TECNOLOGIAS & STACK
+       Principais tecnologias utilizadas -->
+  <section id="tecnologias" aria-labelledby="tecnologias-titulo">
+    <div class="container">
+
+      <p class="section-label">Ferramentas &amp; Tecnologias</p>
+      <h2 class="section-title" id="tecnologias-titulo">Stack Tecnológico</h2>
+      <div class="section-divider"></div>
+
+      <div class="tech-grid">
+
+        <div class="tech-card">
+          <div class="tech-icon">🌐</div>
+          <p class="tech-title">Frontend</p>
+          <p class="tech-list">HTML5 · CSS3 · JavaScript ES6+ · Responsivo</p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon">⚙️</div>
+          <p class="tech-title">Backend</p>
+          <p class="tech-list">Python · Lógica de Programação · APIs</p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon">🗄️</div>
+          <p class="tech-title">Banco de Dados</p>
+          <p class="tech-list">SQL · Modelagem de Dados · Estruturas</p>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-icon">🛠️</div>
+          <p class="tech-title">Ferramentas</p>
+          <p class="tech-list">Git · GitHub · VS Code · DevTools</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
        Links para trabalhos realizados   -->
   <section id="portfolio" aria-labelledby="portfolio-titulo">
     <div class="container">
@@ -974,6 +391,11 @@
     <p>© 2025 Aquilas Oliveira · Feito com HTML5, CSS3 e JavaScript</p>
   </footer>
 
+  <!-- BOTÃO SCROLL TO TOP (flutuante) -->
+  <button id="scroll-top-btn" aria-label="Voltar ao topo" title="Voltar ao topo">
+    ⬆️
+  </button>
+
   <!-- MODAL DE CONFIRMAÇÃO DE ENVIO
        Exibido pelo JS após validação bem-sucedida -->
   <div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
@@ -987,182 +409,8 @@
     </div>
   </div>
 
-  <!-- JAVASCRIPT
-       Sem frameworks — vanilla JS puro -->
-  <script>
-    /* 1. ALTERNÂNCIA DE TEMA CLARO / ESCURO
-       Salva preferência no localStorage para
-       manter o tema escolhido entre visitas.*/
-    const themeBtn   = document.getElementById('theme-toggle');
-    const body       = document.body;
-
-    // Recupera tema salvo
-    const savedTheme = localStorage.getItem('tema');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      body.classList.add('dark');
-      themeBtn.textContent = '☀️';
-    }
-
-    // Ao clicar: alterna classe .dark no body e salva no localStorage
-    themeBtn.addEventListener('click', function () {
-      const isDark = body.classList.toggle('dark');
-      themeBtn.textContent  = isDark ? '☀️' : '🌙';
-      localStorage.setItem('tema', isDark ? 'dark' : 'light');
-    });
-
-
-    /* 2. MENU HAMBURGUER (MOBILE)
-       Abre e fecha o menu de navegação em telas
-       menores; fecha ao clicar em qualquer link.*/
-    const hamburger = document.getElementById('hamburger');
-    const navLinks  = document.getElementById('nav-links');
-
-    // Abre/fecha o menu ao clicar no botão hamburguer
-    hamburger.addEventListener('click', function () {
-      const isOpen = navLinks.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Fecha o menu ao clicar em qualquer link (navegação âncora)
-    document.querySelectorAll('.nav-link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-
-    /* 3. DESTAQUE DO LINK ATIVO NO MENU
-       Usa IntersectionObserver para detectar qual
-       seção está visível e marca o link correspondente. */
-    const sections  = document.querySelectorAll('section[id]');
-    const navItems  = document.querySelectorAll('.nav-link');
-
-    const sectionObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // Remove classe active de todos os links
-          navItems.forEach(function (l) { l.classList.remove('active'); });
-          // Adiciona classe active no link correspondente à seção visível
-          const active = document.querySelector('.nav-link[href="#' + entry.target.id + '"]');
-          if (active) active.classList.add('active');
-        }
-      });
-    }, { threshold: 0.4 }); // 40% da seção visível para ativar
-
-    sections.forEach(function (s) { sectionObserver.observe(s); });
-
-
-    /* 4. ANIMAÇÃO DAS BARRAS DE HABILIDADE
-       Anima as barras de progresso (largura 0 → %),
-       disparada quando entram na viewport.*/
-    const skillBars = document.querySelectorAll('.skill-bar-fill');
-
-    const barObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // Aplica a largura definida no atributo data-width
-          entry.target.style.width = entry.target.dataset.width + '%';
-          barObserver.unobserve(entry.target); // Anima apenas uma vez
-        }
-      });
-    }, { threshold: 0.3 });
-
-    skillBars.forEach(function (bar) { barObserver.observe(bar); });
-
-
-    /* 5. VALIDAÇÃO DO FORMULÁRIO DE CONTATO
-       Verifica se todos os campos estão preenchidos
-       e se o e-mail tem formato válido antes de
-       simular o envio. */
-    const form    = document.getElementById('contact-form');
-    const modal   = document.getElementById('modal-overlay');
-    const modalClose = document.getElementById('modal-close');
-
-    // Função auxiliar: exibe ou esconde mensagem de erro de um campo
-    function setError(inputId, erroId, mostrar) {
-      const input = document.getElementById(inputId);
-      const erro  = document.getElementById(erroId);
-      if (mostrar) {
-        input.classList.add('error');
-        erro.classList.add('show');
-      } else {
-        input.classList.remove('error');
-        erro.classList.remove('show');
-      }
-    }
-
-    // Função de validação de formato de e-mail com expressão regular
-    function emailValido(email) {
-      // Padrão: texto@texto.texto (ex: usuario@dominio.com)
-      var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return regex.test(email.trim());
-    }
-
-    // Evento de submissão do formulário
-    form.addEventListener('submit', function (e) {
-      e.preventDefault(); // Impede o recarregamento da página
-
-      // Captura os valores dos campos
-      var nome     = document.getElementById('nome').value.trim();
-      var email    = document.getElementById('email').value.trim();
-      var mensagem = document.getElementById('mensagem').value.trim();
-
-      var valido = true; // Flag: todos os campos válidos?
-
-      // --- Validação do campo Nome ---
-      if (nome === '') {
-        setError('nome', 'erro-nome', true);
-        valido = false;
-      } else {
-        setError('nome', 'erro-nome', false);
-      }
-
-      // --- Validação do campo E-mail ---
-      if (email === '' || !emailValido(email)) {
-        setError('email', 'erro-email', true);
-        valido = false;
-      } else {
-        setError('email', 'erro-email', false);
-      }
-
-      // --- Validação do campo Mensagem ---
-      if (mensagem === '') {
-        setError('mensagem', 'erro-mensagem', true);
-        valido = false;
-      } else {
-        setError('mensagem', 'erro-mensagem', false);
-      }
-
-      // Se todos os campos estão válidos: limpa o form e exibe o modal
-      if (valido) {
-        form.reset();                    // Limpa todos os campos
-        modal.classList.add('show');     // Exibe o modal de confirmação
-      }
-    });
-
-    // Fecha o modal ao clicar no botão "Fechar"
-    modalClose.addEventListener('click', function () {
-      modal.classList.remove('show');
-    });
-
-    // Fecha o modal ao clicar fora da caixa (no overlay)
-    modal.addEventListener('click', function (e) {
-      if (e.target === modal) {
-        modal.classList.remove('show');
-      }
-    });
-
-    // Fecha o modal com a tecla Escape (acessibilidade)
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        modal.classList.remove('show');
-      }
-    });
-
-  </script>
+  <!-- Script principal -->
+  <script src="script.js"></script>
 
 </body>
 </html>
